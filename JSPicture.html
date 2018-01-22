@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>QIYUAN ZHAO</title>
+	<style type="text/css">
+		body{
+			margin-top: 150px;
+			margin-left:200px;
+			margin-right:200px;
+			background-color:#28303d;
+			text-align:center; 
+		}
+		p{
+			background-color: #66748c;
+			background-size: 200px;
+			font-size: 20px;
+			font-style: italic;
+		}
+	</style>
+</head>
+
+<body onload="change()">
+	<p>
+		This is my Photos Wall 
+	</p>
+	<script type="text/javascript">
+		var photos = ['img/1.png','img/2.png','img/3.png'];
+	var count = 0; //count the num of picture
+	var flag; //return the action id
+	function callback() //this method is main method to change the picture
+	{ 
+ 		document.getElementById("photo").src = photos[count];
+ 		count++;
+ 	if (count == photos.length)
+  		count = 0; 
+	} 
+ 
+	function change() //start
+	{
+ 		flag = setInterval(callback,2000); 
+	}
+ 
+	function off() //if your mouse stay on the current picture it will stop
+	{
+ 		clearInterval(flag);
+	}
+ 
+	function on() //when you move your mouse, keep changing the picture
+	{
+ 		flag = setInterval(callback,2000); 
+	}
+ 
+	function leftMove() //move to left picture
+	{
+	 	document.getElementById("photo").src = photos[count];
+ 		count++;
+ 		if (count == photos.length)
+  			count = 0;
+	}
+ 
+	function rightMove() //move to right picture
+	{
+ 	count--;
+ 	document.getElementById("photo").src = photos[count];
+ 	if (count <= 0)
+  		count = photos.length - 1;
+	}
+	</script>
+ <div id="changePhotos">
+   <img src="img/left.png" id="leftimg" onclick="rightMove()"/>
+   <a href="https://www.shanghaihighlights.com/neighbours/huangshan.html" target="view_window">
+   <img id="photo" src="img/2.png" onmouseover="off()" onmouseout="on()"/>
+   </a>
+   <img src="img/right.png" id="rightimg" onclick="leftMove()"/> 
+ </div>
+</body>
+</html>
+ 
